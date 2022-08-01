@@ -148,16 +148,16 @@
 
 		var timeout = 20000 // milliseconds
 		var separator = '';
-		var serverBase = '/v3';
+		var serverBase = '/v2';
 		var etcdBase = Cookies.get('etcd-endpoint');
 		if(typeof(etcdBase) === 'undefined') {
-			etcdBase = '127.0.0.1:2379';
+			etcdBase = 'etcd.etcd:2379';
 		}
 
         // version switch
         var version = Cookies.get('etcd-version');
         if(typeof(version) === 'undefined') {
-            version = '3';
+            version = '2';
         }
         setServerBase(version);
         $(function(){
