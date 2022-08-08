@@ -80,8 +80,9 @@ func main() {
 	// dirctory mode
 	http.HandleFunc("/v3/getpath", middleware(nothing, getPath))
 
+	var err error
 	// Session management
-	sessmgr, err := session.NewManager("memory", "_etcdkeeper_session", 86400)
+	sessmgr, err = session.NewManager("memory", "_etcdkeeper_session", 86400)
 	if err != nil {
 		log.Fatal(err)
 	}
