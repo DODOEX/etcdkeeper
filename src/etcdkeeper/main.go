@@ -84,7 +84,7 @@ func main() {
 	// Session management
 	sessmgr, err = session.NewManager("memory", "_etcdkeeper_session", 86400)
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
 	time.AfterFunc(86400*time.Second, func() {
 		sessmgr.GC()
@@ -95,7 +95,7 @@ func main() {
 	log.Printf("listening on %s:%d\n", *host, *port)
 	err = http.ListenAndServe(*host+":"+strconv.Itoa(*port), nil)
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
 }
 
@@ -552,12 +552,12 @@ func getInfoV2(host string) map[string]string {
 		}
 		ver, err := rootClient.GetVersion(context.Background())
 		if err != nil {
-			log.Fatal(err)
+			panic(err)
 		}
 		memberKapi := client.NewMembersAPI(rootClient)
 		member, err := memberKapi.Leader(context.Background())
 		if err != nil {
-			log.Fatal(err)
+			panic(err)
 		}
 		info["version"] = ver.Server
 		info["name"] = member.Name
@@ -1056,11 +1056,11 @@ func getInfo(host string) map[string]string {
 
 	status, err := rootClient.Status(context.Background(), host)
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
 	mems, err := rootClient.MemberList(context.Background())
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
 	kb := 1024
 	mb := kb * 1024
