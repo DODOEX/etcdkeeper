@@ -30,4 +30,4 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: sa1i/etcdkeeper:latest,sa1i/etcdkeeper:${{ github.sha }}
+          tags: dodozoo/etcdkeeper:latest,dodozoo/etcdkeeper:${{ github.sha }}
